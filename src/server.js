@@ -1,0 +1,22 @@
+const express = require('express');
+const helmet = require('helmet');
+const compression = require('compression');
+const rateLimit = require('express-rate-limit');
+const pinoHttp = require('pino-http');
+const config = require('./config');
+const pool = require('./db/pool');
+const log = require('./utils/logger');
+const outbox = require('./services/outbox');
+const app = express();
+app.disable('x-powered-by');
+app.use(helmet()); app.use(compression()); app.use(pinoHttp({ logger: log }));
+app.get('/health', async (_req, res) => { try { await pool.query('SELECT 1'); res.json({ status: 'ok' }); } catch { res.status(503).json({ status: 'unavailable' }); } });
+app.use('/webhooks/whatsapp', require('./routes/webhook'));
+app.use('/admin', rateLimit({ windowMs: 60_000, limit: 120, standardHeaders: true, legacyHeaders: false }), express.json({ limit: '32kb' }), require('./routes/admin'));
+app.use((err, req, res, _next) => { log.error({ err, path: req.path }, 'Request failed'); res.status(500).json({ error: 'Internal server error' }); });
+const server = app.listen(config.PORT, () => log.info({ port: config.PORT }, 'WhatsApp chatbot service listening'));
+const worker = setInterval(() => outbox.processOne().catch((err) => log.error({ err }, 'Outbox worker error')), config.OUTBOX_POLL_MS);
+worker.unref();
+async function shutdown(signal) { log.info({ signal }, 'Shutting down'); clearInterval(worker); server.close(async () => { await pool.end(); process.exit(0); }); setTimeout(() => process.exit(1), 10000).unref(); }
+process.on('SIGTERM', () => shutdown('SIGTERM')); process.on('SIGINT', () => shutdown('SIGINT'));
+module.exports = app;
