@@ -11,7 +11,7 @@ const schema = z.object({
   WHATSAPP_ACCESS_TOKEN: z.string().min(1),
   WHATSAPP_PHONE_NUMBER_ID: z.string().min(1),
   WHATSAPP_GRAPH_API_VERSION: z.string().default('v22.0'),
-  BUSINESS_NAME: z.string().default('Nuru Tech Foundation'),
+  BUSINESS_NAME: z.string().default('Nuru Tech Executive Group'),
   BUSINESS_INDUSTRY: z.string().default('Tech and Automations'),
   BUSINESS_LANGUAGES: z.string().default('Python'),
   BUSINESS_TIMEZONE: z.string().default('UTC'),

@@ -1,6 +1,6 @@
-# WhatsApp Business Chatbot — Nuru Tech Foundation
+# WhatsApp Business Chatbot — Nuru Tech Executive Group
 
-A configurable Node.js 20, Express and PostgreSQL starter for the **official WhatsApp Business Platform Cloud API**. Business profile defaults supplied so far: **Nuru Tech Foundation**, **Tech and Automations**. The provided language value `Python` is preserved as configuration, but Python is a programming language—not a WhatsApp locale. Set `BUSINESS_LANGUAGES` to actual customer-facing languages (for example `en,sw`) before launch. The requested Node.js stack is retained.
+A configurable Node.js 20, Express and PostgreSQL starter for the **official WhatsApp Business Platform Cloud API**. Business profile defaults supplied so far: **Nuru Tech Executive Group**, **Tech and Automations**. The provided language value `Python` is preserved as configuration, but Python is a programming language—not a WhatsApp locale. Set `BUSINESS_LANGUAGES` to actual customer-facing languages (for example `en,sw`) before launch. The requested Node.js stack is retained.
 
 This is an application scaffold, not a Meta-approved business account or a turnkey guarantee of compliance. You must supply credentials, finish Meta business verification/configuration, approve message templates, choose privacy terms, and validate flows against your own policies before production.
 
@@ -79,7 +79,7 @@ The service includes example payload builders but does not automatically send te
 
 ```text
 Customer: Hi
-Bot: Welcome to Nuru Tech Foundation. How can we help? [View options]
+Bot: Welcome to Nuru Tech Executive Group. How can we help? [View options]
 Customer: Request information
 Bot: What is your full name?
 Bot: What is your phone number?
