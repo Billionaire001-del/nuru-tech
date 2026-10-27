@@ -145,13 +145,13 @@ git init
 git add .
 git commit -m "Build WhatsApp Business Cloud API chatbot"
 git branch -M main
-gh repo create YOUR_GITHUB_USER/whatsapp-business-chatbot --private --source=. --remote=origin --push
+gh repo create YOUR_GITHUB_USER/nuru-tech --public --source=. --remote=origin --push
 ```
 
 If you created the empty repository in GitHub's web interface instead, use:
 
 ```bash
-git remote add origin https://github.com/YOUR_GITHUB_USER/whatsapp-business-chatbot.git
+git remote add origin https://github.com/YOUR_GITHUB_USER/nuru-tech.git
 git push -u origin main
 ```
 
